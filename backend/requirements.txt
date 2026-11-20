@@ -7,3 +7,7 @@ psycopg[binary]
 alembic
 pytest
 httpx
+
+geoalchemy2
+
+geoalchemy2

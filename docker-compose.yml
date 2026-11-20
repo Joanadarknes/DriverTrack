@@ -1,0 +1,21 @@
+﻿services:
+  database:
+    image: postgis/postgis:17-3.7
+    container_name: drivertrack-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: drivertrack
+      POSTGRES_USER: drivertrack
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - drivertrack_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U drivertrack -d drivertrack"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  drivertrack_data:
